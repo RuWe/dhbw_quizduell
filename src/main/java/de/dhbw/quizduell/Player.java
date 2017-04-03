@@ -1,17 +1,22 @@
 package de.dhbw.quizduell;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by Ruth Weber on 30.03.2017.
  */
+@Entity
 public class Player {
 
+    @Id
     private long id;
 
     private String playerName;
 
     private int score;
 
-    private Player() {}
+    public Player() {}
 
     public long getId() { return id; }
 

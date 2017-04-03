@@ -1,15 +1,19 @@
 package de.dhbw.quizduell;
 
+import javax.persistence.*;
+
 /**
  * Created by kfrank on 03.04.2017.
  */
+@Entity
 public class Answer {
 
+    @Id
     private long id;
 
     private String answer;
 
-    private Answer() {}
+    public Answer() {}
 
     public long getId() {
         return id;

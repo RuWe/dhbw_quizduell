@@ -46,3 +46,4 @@ crashlytics-build.properties
 fabric.properties
 /.idea/
 /dhbw_quizduell.iml
+/target/

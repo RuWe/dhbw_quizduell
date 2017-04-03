@@ -1,21 +1,30 @@
 package de.dhbw.quizduell;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 /**
  * Created by Ruth Weber on 30.03.2017.
  */
+@Entity
 public class Duell {
 
+    @Id
     private long id;
 
+    @OneToOne
     private Player player1;
 
+    @OneToOne
     private Player player2;
 
+    @ManyToMany
     private List<Round> rounds;
 
-    private Duell() {}
+    public Duell() {}
 
     public long getId() {
         return id;

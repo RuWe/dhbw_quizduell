@@ -1,21 +1,29 @@
 package de.dhbw.quizduell;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 /**
  * Created by Ruth Weber on 30.03.2017.
  */
+@Entity
 public class Question {
 
+    @Id
     private long id;
 
     private String question;
 
+    @ManyToMany
     private List<Answer> answers;
 
+    @ManyToOne
     private Answer correctAnswer;
 
-    private Question() {}
+    public Question() {}
 
     public long getId() {
         return id;

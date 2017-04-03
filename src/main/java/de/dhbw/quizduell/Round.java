@@ -1,22 +1,30 @@
 package de.dhbw.quizduell;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Ruth Weber on 30.03.2017.
  */
+@Entity
 public class Round {
 
+    @Id
     private long id;
 
+    @ManyToMany
     private List<Question> questions;
 
+    @ManyToMany
     private Map<Question, Answer> answersPlayer1;
 
+    @ManyToMany
     private Map<Question, Answer> answersPlayer2;
 
-    private  Round() {}
+    public Round() {}
 
     public long getId() {
         return id;
