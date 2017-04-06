@@ -1,8 +1,6 @@
 package de.dhbw.quizduell;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +16,14 @@ public class Round {
     @ManyToMany
     private List<Question> questions;
 
-    @ManyToMany
-    private Map<Question, Answer> answersPlayer1;
+    @OneToMany(mappedBy = "round")
+    private List<Question_Answer_Set> answerPlayer1;
 
-    @ManyToMany
-    private Map<Question, Answer> answersPlayer2;
+    @OneToMany(mappedBy = "round")
+    private List<Question_Answer_Set> answerPlayer2;
+
+    @ManyToOne
+    private Duell duell;
 
     public Round() {}
 
@@ -42,19 +43,27 @@ public class Round {
         this.questions = questions;
     }
 
-    public Map<Question, Answer> getAnswersPlayer1() {
-        return answersPlayer1;
+    public List<Question_Answer_Set> getAnswerPlayer1() {
+        return answerPlayer1;
     }
 
-    public void setAnswersPlayer1(Map<Question, Answer> answersPlayer1) {
-        this.answersPlayer1 = answersPlayer1;
+    public void setAnswerPlayer1(List<Question_Answer_Set> answerPlayer1) {
+        this.answerPlayer1 = answerPlayer1;
     }
 
-    public Map<Question, Answer> getAnswersPlayer2() {
-        return answersPlayer2;
+    public List<Question_Answer_Set> getAnswerPlayer2() {
+        return answerPlayer2;
     }
 
-    public void setAnswersPlayer2(Map<Question, Answer> answersPlayer2) {
-        this.answersPlayer2 = answersPlayer2;
+    public void setAnswerPlayer2(List<Question_Answer_Set> answerPlayer2) {
+        this.answerPlayer2 = answerPlayer2;
+    }
+
+    public Duell getDuell() {
+        return duell;
+    }
+
+    public void setDuell(Duell duell) {
+        this.duell = duell;
     }
 }

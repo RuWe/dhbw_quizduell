@@ -1,6 +1,7 @@
 package de.dhbw.quizduell;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by kfrank on 03.04.2017.
@@ -12,6 +13,9 @@ public class Answer {
     private long id;
 
     private String answer;
+
+    @OneToMany(mappedBy = "correctAnswer")
+    private List<Question> question;
 
     public Answer() {}
 

@@ -1,9 +1,6 @@
 package de.dhbw.quizduell;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -21,7 +18,7 @@ public class Duell {
     @OneToOne
     private Player player2;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "duell")
     private List<Round> rounds;
 
     public Duell() {}
