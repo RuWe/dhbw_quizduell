@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Server {
 
     public Server() {}
-    
+
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("cassandra");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -29,8 +29,6 @@ public class Server {
         entityManager.persist(player2);
         entityManager.persist(duell);
         entityManager.getTransaction().commit();
-
-
 
         entityManagerFactory.close();
 

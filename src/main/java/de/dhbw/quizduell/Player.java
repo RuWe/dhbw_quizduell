@@ -1,8 +1,6 @@
 package de.dhbw.quizduell;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Ruth Weber on 30.03.2017.
@@ -11,6 +9,7 @@ import javax.persistence.Id;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String playerName;
