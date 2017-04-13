@@ -10,6 +10,7 @@ import java.util.List;
 public class Duell {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @OneToOne

@@ -10,10 +10,11 @@ import java.util.List;
 public class WaitingQueue {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
-    private List<Player> player;
+    @OneToOne
+    private Player player;
 
     public WaitingQueue() {    }
 
@@ -25,11 +26,11 @@ public class WaitingQueue {
         this.id = id;
     }
 
-    public List<Player> getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(List<Player> player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 }
