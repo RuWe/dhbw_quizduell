@@ -17,15 +17,18 @@ public class Server {
 
         Server server = new Server();
 
-        server.savePlayers();
+        //server.savePlayers();
 
         long playerId = server.login("Klaus");
         System.out.println(playerId);
         boolean otherPlayersWaiting = server.match(playerId);
-        System.out.println(otherPlayersWaiting);
+        System.out.println("Andere Spieler warten: "+ otherPlayersWaiting);
         server.login("Peter");
         otherPlayersWaiting = server.match(playerId);
-        System.out.println(otherPlayersWaiting);
+        System.out.println("Andere Spieler warten: "+ otherPlayersWaiting);
+
+        boolean roundToPlay = server.roundToPlay(playerId);
+        System.out.println("Runden da: "+ roundToPlay);
 
 
         server.logout();
@@ -55,7 +58,7 @@ public class Server {
     }
 
 
-    public void savePlayers() {
+/*    public void savePlayers() {
         Player player1 = new Player();
         Player player2 = new Player();
 
@@ -67,7 +70,7 @@ public class Server {
         entityManager.persist(player1);
         entityManager.persist(player2);
         entityManager.getTransaction().commit();
-    }
+    }*/
 
    public long login(String username) {
        Player player = (Player) entityManager.createQuery("FROM Player WHERE playerName = :username").setParameter("username", username).getSingleResult();
@@ -112,4 +115,30 @@ public class Server {
             return false;
         }
     }
+
+    public boolean roundToPlay(long playerId) {
+        Duell duell = (Duell) entityManager.createQuery("FROM Duell WHERE player1.id = :playerId").setParameter("playerId", playerId).getSingleResult();
+        List<Round> rounds = duell.getRounds();
+        for (Round round : rounds) {
+            List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
+                    .setParameter("round", round).getResultList();
+            if(question_answer_sets.size() < 3) {
+                return true;
+            }
+        }
+
+        Duell duell2 = (Duell) entityManager.createQuery("FROM Duell WHERE player2.id = :playerId").setParameter("playerId", playerId).getSingleResult();
+        List<Round> rounds2 = duell2.getRounds();
+        for (Round round2 : rounds2) {
+            List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
+                    .setParameter("round", round2).getResultList();
+            if(question_answer_sets.size() < 3) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
 }
