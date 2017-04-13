@@ -10,8 +10,10 @@ public class Server {
     public Server() {}
 
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("cassandra");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("emf");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Game game = new Game();
+
         Player player1 = new Player();
         Player player2 = new Player();
 

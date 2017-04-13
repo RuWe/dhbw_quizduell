@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by Ruth Weber on 10.04.2017.
  */
-public class Server {
+public class RestServer {
 
     public static void main(String[] args) throws IOException, Exception {
         Component component = new Component();
