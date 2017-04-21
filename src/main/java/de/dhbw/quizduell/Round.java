@@ -6,7 +6,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Ruth Weber on 30.03.2017.
@@ -21,13 +20,10 @@ public class Round {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Question> questions;
 
-    @OneToMany(mappedBy = "roundPlayer1", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "round", fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
-    private List<Question_Answer_Set> answerPlayer1;
+    private List<Question_Answer_Set> answer;
 
-    @OneToMany(mappedBy = "roundPlayer2", fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
-    private List<Question_Answer_Set> answerPlayer2;
 
     @JsonIgnore
     @ManyToOne
@@ -51,20 +47,12 @@ public class Round {
         this.questions = questions;
     }
 
-    public List<Question_Answer_Set> getAnswerPlayer1() {
-        return answerPlayer1;
+    public List<Question_Answer_Set> getAnswer() {
+        return answer;
     }
 
-    public void setAnswerPlayer1(List<Question_Answer_Set> answerPlayer1) {
-        this.answerPlayer1 = answerPlayer1;
-    }
-
-    public List<Question_Answer_Set> getAnswerPlayer2() {
-        return answerPlayer2;
-    }
-
-    public void setAnswerPlayer2(List<Question_Answer_Set> answerPlayer2) {
-        this.answerPlayer2 = answerPlayer2;
+    public void setAnswer(List<Question_Answer_Set> answerPlayer1) {
+        this.answer = answerPlayer1;
     }
 
     public Duell getDuell() {
