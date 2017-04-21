@@ -33,28 +33,6 @@ public class Server {
 
         server.logout();
 
-        /*Game game = new Game();
-
-        Player player1 = new Player();
-        Player player2 = new Player();
-
-        player1.setPlayerName("Peter");
-        player1.setScore(2);
-        player2.setPlayerName("Klaus");
-        player2.setScore(5);
-
-        Duell duell = new Duell();
-        duell.setPlayer1(player1);
-        duell.setPlayer2(player2);
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(player1);
-        entityManager.persist(player2);
-        entityManager.persist(duell);
-        entityManager.getTransaction().commit();
-
-        entityManager.close();*/
-
     }
 
 
@@ -116,24 +94,46 @@ public class Server {
         }
     }
 
+    public List<Duell> showDuell(long playerId) {
+        List<Duell> duellList = entityManager.createQuery("FROM Duell WHERE player1.id = :playerId").setParameter("playerId", playerId).getResultList();
+        duellList.addAll(entityManager.createQuery("FROM Duell WHERE player2.id = :playerId").setParameter("playerId", playerId).getResultList());
+        return duellList;
+    }
+
+    public List<Round> selectDuell(long playerId, long duellId) {
+        List<Round> roundList = entityManager.createQuery("FROM Round WHERE duell.id = :duellId").setParameter("duellId", duellId).getResultList();
+        return roundList;
+    }
+
+    public List<Question> selectRound(long playerId, long roundId) {
+        Round round = (Round) entityManager.createQuery("FROM Round WHERE id = :roundId").setParameter("roundId", roundId).getSingleResult();
+        List<Question> questionList = round.getQuestions();
+        return questionList;
+    }
+
     public boolean roundToPlay(long playerId) {
-        Duell duell = (Duell) entityManager.createQuery("FROM Duell WHERE player1.id = :playerId").setParameter("playerId", playerId).getSingleResult();
-        List<Round> rounds = duell.getRounds();
-        for (Round round : rounds) {
-            List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
-                    .setParameter("round", round).getResultList();
-            if(question_answer_sets.size() < 3) {
-                return true;
+        List<Duell> duellList = entityManager.createQuery("FROM Duell WHERE player1.id = :playerId").setParameter("playerId", playerId).getResultList();
+        for (Duell duell : duellList) {
+            List<Round> rounds = duell.getRounds();
+            for (Round round : rounds) {
+                List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
+                        .setParameter("round", round).getResultList();
+                if(question_answer_sets.size() < 3) {
+                    return true;
+                }
             }
         }
 
-        Duell duell2 = (Duell) entityManager.createQuery("FROM Duell WHERE player2.id = :playerId").setParameter("playerId", playerId).getSingleResult();
-        List<Round> rounds2 = duell2.getRounds();
-        for (Round round2 : rounds2) {
-            List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
-                    .setParameter("round", round2).getResultList();
-            if(question_answer_sets.size() < 3) {
-                return true;
+
+        List<Duell> duellList2 = entityManager.createQuery("FROM Duell WHERE player2.id = :playerId").setParameter("playerId", playerId).getResultList();
+        for (Duell duell2 : duellList2) {
+            List<Round> rounds2 = duell2.getRounds();
+            for (Round round2 : rounds2) {
+                List<Question_Answer_Set> question_answer_sets = entityManager.createQuery("FROM Question_Answer_Set WHERE round = :round")
+                        .setParameter("round", round2).getResultList();
+                if(question_answer_sets.size() < 3) {
+                    return true;
+                }
             }
         }
 

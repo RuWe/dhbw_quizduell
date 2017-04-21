@@ -13,7 +13,7 @@ public class RestApp extends Application{
     public Restlet createInboundRoot() {
         Router router = new Router(getContext());
 
-        router.attach("/hello/{id}", ClientResource.class);
+        router.attach("/game/player/{playerId}", ClientResource.class);
 
         return router;
     }

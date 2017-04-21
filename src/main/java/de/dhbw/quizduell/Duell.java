@@ -1,5 +1,8 @@
 package de.dhbw.quizduell;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +22,8 @@ public class Duell {
     @OneToOne
     private Player player2;
 
-    @OneToMany(mappedBy = "duell")
+    @OneToMany(mappedBy = "duell", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     private List<Round> rounds;
 
     public Duell() {}

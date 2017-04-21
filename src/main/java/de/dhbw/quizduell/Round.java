@@ -1,5 +1,9 @@
 package de.dhbw.quizduell;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
@@ -14,15 +18,18 @@ public class Round {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Question> questions;
 
-    @OneToMany(mappedBy = "round")
+    @OneToMany(mappedBy = "roundPlayer1", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     private List<Question_Answer_Set> answerPlayer1;
 
-    @OneToMany(mappedBy = "round")
+    @OneToMany(mappedBy = "roundPlayer2", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     private List<Question_Answer_Set> answerPlayer2;
 
+    @JsonIgnore
     @ManyToOne
     private Duell duell;
 

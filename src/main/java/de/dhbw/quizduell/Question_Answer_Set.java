@@ -24,7 +24,10 @@ public class Question_Answer_Set {
     private Player player;
 
     @ManyToOne
-    private Round round;
+    private Round roundPlayer1;
+
+    @ManyToOne
+    private Round roundPlayer2;
 
     public Question_Answer_Set() {
     }
@@ -61,11 +64,19 @@ public class Question_Answer_Set {
         this.player = player;
     }
 
-    public Round getRound() {
-        return round;
+    public Round getRoundPlayer1() {
+        return roundPlayer1;
     }
 
-    public void setRound(Round round) {
-        this.round = round;
+    public void setRoundPlayer1(Round round) {
+        this.roundPlayer1 = round;
+    }
+
+    public Round getRoundPlayer2() {
+        return roundPlayer2;
+    }
+
+    public void setRoundPlayer2(Round roundPlayer2) {
+        this.roundPlayer2 = roundPlayer2;
     }
 }

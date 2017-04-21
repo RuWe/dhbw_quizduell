@@ -1,9 +1,9 @@
 package de.dhbw.quizduell;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,10 +17,11 @@ public class Question {
 
     private String question;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     private List<Answer> answers;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Answer correctAnswer;
 
     public Question() {}
