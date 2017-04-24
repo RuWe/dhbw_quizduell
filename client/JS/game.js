@@ -6,9 +6,15 @@ function loadDuell() {
         url: "test.json",
         success: function(data) {
             $.each(data, function(i, obj) {
+                $('#duells').append($('<button>' + obj.id + '</button>'));
                 //alert(i + " " + obj)
                 //$('#player'+id+'Question').append($('<label for="'+i+'">'+obj+'</label>'));
-                $('#duells').append($('<button>' + obj.id + '</button>'));
+                $.each(obj, function (j, o) {
+                    if (o.id != null) {
+                        $('#duells').append($('<button>' + o.playerName + '</button>'));
+                    }
+                })
+                $('#duells').append($('</br>'));
             });
             //$('#player'+id+'Question').append($('<div id="test"+id>' + data +'</div>'));
             //$('#player'+id+'Answer').append($('<button id="testA"+id>' + data +'</button>'));
