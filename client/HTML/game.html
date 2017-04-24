@@ -20,24 +20,32 @@
     <p>Player 1:
     <div id="p1">
         FRAGEN AUSWAHL
-        <button id="p1Question1" onclick="loadQuestion(1)">1</button>
-        <button id="p1Question2" onclick="loadQuestion(1)">2</button>
-        <button id="p1Question3" onclick="loadQuestion(1)">3</button>
+        <button id="p1Question1" onclick="loadQuestion(1, 1)">1</button>
+        <button id="p1Question2" onclick="loadQuestion(1, 2)">2</button>
+        <button id="p1Question3" onclick="loadQuestion(1, 2)">3</button>
     </div>
     <div id="player1Question">
         FRAGEN ANZEIGE
     </div>
     <div id="player1Answer">ANTWORT WÄHLEN</div>
+    <div id="player1Question1"></div>
+    <div id="player1Answer1"></div>
+    <div id="player1Question2"></div>
+    <div id="player1Answer2"></div>
+    <div id="player1Question3"></div>
+    <div id="player1Answer3"></div>
     <p>Player 2:
     <div id="p2">
-        <button id="p2Answer1" onclick="loadQuestion(2)">1</button>
-        <button id="p2Answer2" onclick="loadQuestion(2)">2</button>
-        <button id="p2Answer3" onclick="loadQuestion(2)">3</button>
+        <button id="p2Answer1" onclick="loadQuestion(2, 1)">1</button>
+        <button id="p2Answer2" onclick="loadQuestion(2, 2)">2</button>
+        <button id="p2Answer3" onclick="loadQuestion(2, 3)">3</button>
     </div>
-    <div id="player2Question">
-
-    </div>
-    <div id="player2Answer"></div>
+    <div id="player2Question1"></div>
+    <div id="player2Answer1"></div>
+    <div id="player2Question2"></div>
+    <div id="player2Answer2"></div>
+    <div id="player2Question3"></div>
+    <div id="player2Answer3"></div>
 </div>
 </body>
 </html>

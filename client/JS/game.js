@@ -42,15 +42,31 @@ function loadDuell() {
     alert(output);*/
 }
 
-function loadQuestion(id){
+function loadQuestion(id, round){
     $.ajax({
         dataType: "json",
         url: "test.json",
         success: function(data) {
             $.each(data, function(i, obj) {
-                $.each(obj, function (j, o) {
-                    $('#player'+id+'Question').append($('<button>' + o.id + '</button>'));
-                })
+                //for (let j = 0; j < obj.rounds.length; j++) {
+                    for (let k = 0; k < obj.rounds[round].questions.length; k++) {
+                        alert(round)
+                        //alert(obj.rounds[round].questions[k].id);
+                        $('#player' + id + 'Question' + round).append($('<button id="'+ id+'">' + obj.rounds[round].questions[k].question + '?</button></br>'));
+                        //alert(obj.rounds[0].id)
+                        //alert(obj.rounds[j].id + " ");
+                        for (let l = 0; l < obj.rounds[round].questions[k].answers.length; l++) {
+                            $('#player' + id + 'Question' + round).append($('<button id="'+ obj.rounds[round].questions[k].answers[l].id +'" ' +
+                                'onclick="checkAnswer()">' + obj.rounds[round].questions[k].answers[l].answer + '</button></br>'));
+                        }
+                    }
+
+                //}
+
+               // $.each(obj, function (j, o) {
+                    //$('#player'+id+'Question').append($('<button>'+o.questions[0].question+'</button>'));
+                    //alert(1)
+                //})
 
                 //$('#player'+id+'Question').append($('<label for="'+i+'">'+obj+'</label>'));
                 //$('#player'+id+'Answer').append($('<input id="'+i+'" value="'+obj+'" type="text"/><br>'));
@@ -68,4 +84,8 @@ function loadQuestion(id){
             });
         }
     });
+}
+
+function checkAnswer(id) {
+    alert(id)
 }
