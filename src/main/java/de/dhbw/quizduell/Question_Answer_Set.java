@@ -1,5 +1,7 @@
 package de.dhbw.quizduell;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ public class Question_Answer_Set {
     @OneToOne
     private Player player;
 
+    @JsonIgnore
     @ManyToOne
     private Round round;
 

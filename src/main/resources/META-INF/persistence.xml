@@ -15,9 +15,9 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 
             <property name="hibernate.connection.url"
-                      value="jdbc:mysql://localhost/quizduell?autoReconnect=true" />
-            <property name="hibernate.connection.username" value="cassandra" />
-            <property name="hibernate.connection.password" value="cassandra" />
+                      value="jdbc:mysql://172.17.0.5:1234/quizduell?autoReconnect=true" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="" />
 
 
             <property name="hibernate.hbm2ddl.auto" value="update" />

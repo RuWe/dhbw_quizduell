@@ -36,7 +36,7 @@ public class Server {
     }
 
 
-/*    public void savePlayers() {
+    public void savePlayers() {
         Player player1 = new Player();
         Player player2 = new Player();
 
@@ -48,7 +48,7 @@ public class Server {
         entityManager.persist(player1);
         entityManager.persist(player2);
         entityManager.getTransaction().commit();
-    }*/
+    }
 
    public long login(String username) {
        Player player = (Player) entityManager.createQuery("FROM Player WHERE playerName = :username").setParameter("username", username).getSingleResult();
