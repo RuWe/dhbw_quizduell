@@ -14,8 +14,9 @@ public class RestApp extends Application{
         Router router = new Router(getContext());
 
         router.attach("/game/player/{playerId}", ClientResource.class);
-        //router.attach("/game/login", ClientResource.class); // Login für den Spieler
+        router.attach("/game/login", LoginResource.class); // Login für den Spieler
         router.attach("/game/player/{playerId}/round/{roundId}/question/{questionId}/answer/{answerId}", PlayerAnswerResource.class); // set answer for player
+        router.attach("/game/player/{playerId}/duell/{duellId}", DuellFinishedResource.class);
 
         return router;
     }

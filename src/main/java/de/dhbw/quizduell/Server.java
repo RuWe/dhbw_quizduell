@@ -19,7 +19,7 @@ public class Server {
 
         //server.savePlayers();
 
-        long playerId = server.login("Klaus");
+       /* long playerId = server.login("Klaus");
         System.out.println(playerId);
         boolean otherPlayersWaiting = server.match(playerId);
         System.out.println("Andere Spieler warten: "+ otherPlayersWaiting);
@@ -31,7 +31,7 @@ public class Server {
         System.out.println("Runden da: "+ roundToPlay);
 
 
-        server.logout();
+        server.logout();*/
 
     }
 

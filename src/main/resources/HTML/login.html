@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DHBW Quizduell</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        var name="";
+
+        function submitPlayername(){
+            name = $("#playername")[0].value;
+            alert(name);
+        }
+
+    </script>
+</head>
+</head>
+<body>
+<div class=container>
+    <h1>DHBW Quizduell</h1>
+    <!--<script>alert(1)</script>-->
+    <div class="row">
+        <form>
+            <div class="col-lg-6">
+                Name: <input type="text" id="playername">
+                <button onclick="submitPlayername()">Spielen</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
