@@ -1,0 +1,28 @@
+version: '2'
+services:
+   nginx:
+      image: nginx
+      container_name: nginx
+      external_links:
+         - node1:node1
+         - node2:node2
+         - node3:node3
+         - server1:server1
+         - server2:server2
+      volumes:
+         - ./data/nginx/nginx.conf/default.conf:/etc/nginx/nginx.conf:ro
+      ports:
+         - 1234:1234
+      restart: always
+   server1:
+      build: .
+      container_name: server1
+      ports:
+         - "8084:8085"
+      image: dhbw_quizduell
+   server2:
+      build: .
+      container_name: server2
+      ports:
+         - "8083:8085"
+      image: dhbw_quizduell
