@@ -11,7 +11,7 @@ function loadDuell() {
                 //$('#player'+id+'Question').append($('<label for="'+i+'">'+obj+'</label>'));
                 $.each(obj, function (j, o) {
                     if (o.id != null) {
-                        $('#duells').append($('<button>' + o.playerName + '</button>'));
+                        $('#duells').append($('<label>'+ " " + o.playerName + " "+ '</label>'));
                     }
                 })
                 $('#duells').append($('</br>'));
@@ -50,9 +50,9 @@ function loadQuestion(id, round){
             $.each(data, function(i, obj) {
                 //for (let j = 0; j < obj.rounds.length; j++) {
                     for (let k = 0; k < obj.rounds[round].questions.length; k++) {
-                        alert(round)
+                        //alert(round)
                         //alert(obj.rounds[round].questions[k].id);
-                        $('#player' + id + 'Question' + round).append($('<button id="'+ id+'">' + obj.rounds[round].questions[k].question + '?</button></br>'));
+                        $('#player' + id + 'Question' + round).append($('<label id="'+ id+'">' + obj.rounds[round].questions[k].question + '?</label></br>'));
                         //alert(obj.rounds[0].id)
                         //alert(obj.rounds[j].id + " ");
                         for (let l = 0; l < obj.rounds[round].questions[k].answers.length; l++) {
